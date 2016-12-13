@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/mchi/!svn/ver/1/cake/tests/cases/libs/controller
+END
+controller_merge_vars.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/mchi/!svn/ver/1/cake/tests/cases/libs/controller/controller_merge_vars.test.php
+END
+scaffold.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repos/mchi/!svn/ver/1/cake/tests/cases/libs/controller/scaffold.test.php
+END
+component.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/mchi/!svn/ver/1/cake/tests/cases/libs/controller/component.test.php
+END
+pages_controller.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/mchi/!svn/ver/1/cake/tests/cases/libs/controller/pages_controller.test.php
+END
+controller.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/mchi/!svn/ver/1/cake/tests/cases/libs/controller/controller.test.php
+END

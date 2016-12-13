@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/repos/mchi/!svn/ver/19/app/views/layouts
+END
+default.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/mchi/!svn/ver/7/app/views/layouts/default.ctp
+END
+debug.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/mchi/!svn/ver/19/app/views/layouts/debug.ctp
+END
+logout.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/mchi/!svn/ver/7/app/views/layouts/logout.ctp
+END

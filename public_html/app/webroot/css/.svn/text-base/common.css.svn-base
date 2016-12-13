@@ -1,0 +1,187 @@
+/*-------------------*/
+.ImgBlk {
+	display: table;
+	margin: 0 0 10px;
+}
+
+.ImgBlkR {
+	direction: rtl;
+}
+
+.ImgBlkR * {
+	direction: ltr;
+}
+
+.ImgBlk .ImgArea,.ImgBlk .NonImgArea {
+	display: table-cell;
+	vertical-align: top;
+	text-align: left;
+}
+
+.ImgBlk .NonImgArea {
+	width: 100%;
+}
+
+.ImgBlk .ImgArea {
+	
+}
+
+.ImgBlkR .ImgArea {
+	padding: 0 0 0 10px;
+}
+
+.ImgBlkL .ImgArea {
+	padding: 0 10px 0 0;
+}
+
+
+.ImgBlkL .commentUserImgArea {
+	padding: 0 10px 0 0;
+	padding: 0 10px 0 10px;
+	background-image: url("/img/commentBox_leftPoint.png");
+	background-position: 70px 10px;
+	background-repeat: no-repeat;
+}
+.ImgBlkR .commentUserImgArea {
+	padding: 0 10px 0 0;
+	padding: 0 10px 0 10px;
+	background-image: url("/img/commentBox_rightPoint.png");
+	background-position: 0px 10px;
+	background-repeat: no-repeat;
+}
+.ImgBlk .commentArea {
+	display: table-cell;
+	vertical-align: top;
+	text-align: left;
+	background-color: white;
+	width:100%;
+	padding-left:5px;
+	position:related;
+}
+
+.ImgBlk .subInfoArea {
+	display: table-cell;
+	vertical-align: top;
+	text-align: left;
+	background-color:;
+	width:100%;
+
+}
+#chatArea{
+overflow-y:scroll;
+}
+
+.commentContent{
+  color:#B8860B;
+  text-shadow:none;
+  width:100%;
+  maring:0px;
+  padding:0px;
+}
+.commentDeleteIcon{
+	position:absolute;
+	right:20px;
+}
+.nickName{
+  color:#F90;
+  font-weight:bold;
+  font-size:16px;
+  line-height:1.4;
+  float:left;
+  padding-right:10px;
+}
+.msgCategory{
+	float:right;
+	bottom:0px;
+	margin-right:10px;
+	font-size:0.8em;
+	float:right;
+}
+.othersMsgArea{
+	margin-top:10px;
+	display:block;
+}
+.othersMsgArea:after{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    font-size:0;	
+    clear: both; 
+    visibility:hidden;
+
+}
+.userMsgArea{
+	margin-top:10px;
+	display:block;
+}
+.userMsgArea:after{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    font-size:0;	
+    clear: both; 
+    visibility:hidden;
+
+}
+
+.othersIconArea{
+	float:left;
+	padding-right:10px;
+	background-image:url('/img/commentBox_leftPoint.png');
+	background-repeat:no-repeat;
+	background-position:60px 10px; 
+}
+.userIconArea{
+	float:right;
+	padding-left:10px;
+	background-image:url('/img/commentBox_rightPoint.png');
+	background-repeat:no-repeat;
+	background-position:0px 10px;
+}
+.othersMsgBox{
+	float:left;
+	background-color:white;
+	min-height:60px;
+	max-width:70%;
+	display:block;
+	padding:5px;
+}
+.userMsgBox{
+	float:right;
+	background-color:white;
+	min-height:60px;
+	max-width:70%;
+	display:block;
+	padding:5px;
+}
+.subInfoArea{
+	display:inline-block;
+	width:100%;
+}
+.subInfoArea:after{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    font-size:0;	
+    clear: both; 
+    visibility:hidden;
+
+}
+.msg{
+	word-break:break-all;
+}
+
+.msgInputForm{
+	margin:auto;
+	max-width:500px;
+	padding:10px;
+}
+.error-message{
+	color:red;
+}
+.parseArea{
+	color:blue;
+	font-size:0.8em;
+	
+}
+

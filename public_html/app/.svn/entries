@@ -1,0 +1,129 @@
+10
+
+dir
+68
+http://src.kaneko-lab.net/repos/mchi/app
+http://src.kaneko-lab.net/repos/mchi
+
+
+
+2012-03-07T10:39:35.428063Z
+68
+jungsinyu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1aea814c-dc26-42fd-acee-401b106f659f
+
+locale
+dir
+
+vendors
+dir
+
+tmp
+dir
+
+plugins
+dir
+
+webroot
+dir
+
+tests
+dir
+
+models
+dir
+
+config
+dir
+
+controllers
+dir
+
+libs
+dir
+
+.htaccess
+file
+
+
+
+
+2011-12-28T10:04:38.000000Z
+5271a9e66c99c84c092d7fd81cebcd57
+2012-01-05T11:40:55.510466Z
+1
+jungsinyu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+141
+
+views
+dir
+
+index.php
+file
+
+
+
+
+2011-12-28T10:04:38.000000Z
+8eece958e1cfb087f09fe6f7c11f5597
+2012-01-05T11:40:55.510466Z
+1
+jungsinyu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+685
+

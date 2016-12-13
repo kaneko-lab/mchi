@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/repos/mchi/!svn/ver/1/cake/tests/cases
+END
+basics.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/mchi/!svn/ver/1/cake/tests/cases/basics.test.php
+END
+dispatcher.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/mchi/!svn/ver/1/cake/tests/cases/dispatcher.test.php
+END

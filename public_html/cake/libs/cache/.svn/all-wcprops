@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/repos/mchi/!svn/ver/1/cake/libs/cache
+END
+xcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/mchi/!svn/ver/1/cake/libs/cache/xcache.php
+END
+file.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/mchi/!svn/ver/1/cake/libs/cache/file.php
+END
+memcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/mchi/!svn/ver/1/cake/libs/cache/memcache.php
+END
+apc.php
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/mchi/!svn/ver/1/cake/libs/cache/apc.php
+END

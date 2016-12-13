@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repos/mchi/!svn/ver/1/cake/tests/test_app/models/datasources
+END
+test2_source.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/mchi/!svn/ver/1/cake/tests/test_app/models/datasources/test2_source.php
+END
+test2_other_source.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/mchi/!svn/ver/1/cake/tests/test_app/models/datasources/test2_other_source.php
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 27
+/repos/mchi/!svn/ver/1/cake
+END
+LICENSE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/repos/mchi/!svn/ver/1/cake/LICENSE.txt
+END
+VERSION.txt
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/repos/mchi/!svn/ver/1/cake/VERSION.txt
+END
+bootstrap.php
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/repos/mchi/!svn/ver/1/cake/bootstrap.php
+END
+basics.php
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/repos/mchi/!svn/ver/1/cake/basics.php
+END
+dispatcher.php
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/repos/mchi/!svn/ver/1/cake/dispatcher.php
+END

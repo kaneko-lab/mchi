@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/mchi/!svn/ver/58/app/views/categorizations
+END
+ja.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/mchi/!svn/ver/26/app/views/categorizations/ja.ctp
+END
+cate.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/mchi/!svn/ver/26/app/views/categorizations/cate.ctp
+END
+noun.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/mchi/!svn/ver/26/app/views/categorizations/noun.ctp
+END
+en.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/mchi/!svn/ver/26/app/views/categorizations/en.ctp
+END
+json_get_category.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/mchi/!svn/ver/58/app/views/categorizations/json_get_category.ctp
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/mchi/!svn/ver/1/cake/tests/test_app/plugins/test_plugin/views/helpers
+END
+test_plugin_app.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/mchi/!svn/ver/1/cake/tests/test_app/plugins/test_plugin/views/helpers/test_plugin_app.php
+END
+other_helper.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/mchi/!svn/ver/1/cake/tests/test_app/plugins/test_plugin/views/helpers/other_helper.php
+END
+plugged_helper.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/mchi/!svn/ver/1/cake/tests/test_app/plugins/test_plugin/views/helpers/plugged_helper.php
+END

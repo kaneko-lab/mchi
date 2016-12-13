@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/elements/email/html
+END
+custom.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/elements/email/html/custom.ctp
+END
+nested_element.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/elements/email/html/nested_element.ctp
+END
+default.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/elements/email/html/default.ctp
+END

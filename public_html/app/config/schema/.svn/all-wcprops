@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/repos/mchi/!svn/ver/1/app/config/schema
+END
+i18n.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/mchi/!svn/ver/1/app/config/schema/i18n.php
+END
+db_acl.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/mchi/!svn/ver/1/app/config/schema/db_acl.php
+END
+sessions.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/mchi/!svn/ver/1/app/config/schema/sessions.php
+END

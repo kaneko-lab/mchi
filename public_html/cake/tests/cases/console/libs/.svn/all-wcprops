@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/mchi/!svn/ver/1/cake/tests/cases/console/libs
+END
+acl.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/mchi/!svn/ver/1/cake/tests/cases/console/libs/acl.test.php
+END
+schema.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/mchi/!svn/ver/1/cake/tests/cases/console/libs/schema.test.php
+END
+bake.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/mchi/!svn/ver/1/cake/tests/cases/console/libs/bake.test.php
+END
+shell.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/mchi/!svn/ver/1/cake/tests/cases/console/libs/shell.test.php
+END
+api.test.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/mchi/!svn/ver/1/cake/tests/cases/console/libs/api.test.php
+END

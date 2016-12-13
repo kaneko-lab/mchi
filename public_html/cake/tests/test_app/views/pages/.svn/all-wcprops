@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/pages
+END
+extract.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/pages/extract.ctp
+END
+home.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/pages/home.ctp
+END
+empty
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repos/mchi/!svn/ver/1/cake/tests/test_app/views/pages/empty
+END

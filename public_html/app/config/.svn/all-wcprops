@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/repos/mchi/!svn/ver/18/app/config
+END
+acl.ini.php
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/repos/mchi/!svn/ver/1/app/config/acl.ini.php
+END
+bootstrap.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/mchi/!svn/ver/1/app/config/bootstrap.php
+END
+routes.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/repos/mchi/!svn/ver/1/app/config/routes.php
+END
+database.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/mchi/!svn/ver/70/app/config/database.php
+END
+database.php.default
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/mchi/!svn/ver/1/app/config/database.php.default
+END
+core.php
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/repos/mchi/!svn/ver/3/app/config/core.php
+END

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks
+END
+db_config.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/db_config.php
+END
+extract.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/extract.php
+END
+view.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/view.php
+END
+template.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/template.php
+END
+plugin.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/plugin.php
+END
+test.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/test.php
+END
+model.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/model.php
+END
+bake.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/bake.php
+END
+controller.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/controller.php
+END
+fixture.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/fixture.php
+END
+project.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/mchi/!svn/ver/1/cake/console/libs/tasks/project.php
+END
