@@ -12,12 +12,12 @@
 	echo $form->input('password',array('label'=>'Password'));
 	echo $form->input('lang',array('type'=>'select',
 									'label'=>'Choose your language',
-									'options'=>array('en'=>'English',
-										'ja'=>'japanese',
-										'ch'=>'chinese',
-										'ko'=>'korean',
-										'fr'=>'french',
-										'vi'=>'vietnamese')));
+									'options'=>array(
+										'en'=>'English',
+										'ja'=>'Japanese',
+										'ko'=>'Korean',
+										'th'=>'Thai',
+										'vi'=>'Vietnamese')));
 echo $form->end('Log on');
 	?>
 	<a href="/Users/add/" data-transition="pop" data-role="button">Regist</a>
