@@ -42,7 +42,7 @@ $script= "
 	<div data-role="page" id="ChattingPage">
 
 		<div data-role="header">
-			<h1>Multilingual Chat System with Helping Image</h1>
+			<h1>Multilingual Chat System with Help by Images</h1>
 			<a data-ajax="false" href="/Users/logout" type="button" class="ui-btn-right" >ログアウト</a>
 		</div><!-- /header -->
 
