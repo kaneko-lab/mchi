@@ -18,15 +18,14 @@ class UsersController extends AppController {
 													'fields'=>array('id')));
 			$this->Session->write('firstMsgId',$id['Message']['id']);
 			$this->Session->write('userLang',$this->data['User']['lang']);
-			$this->redirect("/");
+			$this->redirect("/rooms");
 		}
 		$this->layout='logout';
 	
 	}   
 	function logout(){
 		$this->redirect($this->Auth->logout());
-		
-	}   
+	}
 
 	function add() {
 		if (!empty($this->data)) {

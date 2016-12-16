@@ -7,6 +7,7 @@ class CategorizationsController extends AppController {
 
 
 function analyzeMsgCategory($messageId=null,$mode=null){
+
 	if($messageId==null)return false;
 
 	//*メッセージ情報をIDより取得*//
@@ -112,6 +113,9 @@ function analyzeMsgCategory($messageId=null,$mode=null){
 }	
 
 function jsonGetCategory($messageId,$currentUserLang='en',$wait=0){
+
+	//Todo figure out who use this method.
+	return;
 		//This condition will be occur when chat user get other users messages;
 	sleep($wait);
 		

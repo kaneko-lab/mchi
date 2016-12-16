@@ -29,52 +29,72 @@
 			$messages=$this->Message->find('all',array('conditions'=>$conditions,'order'=>'Message.created asc'));
 			echo json_encode($messages);
 		}
-	
+
+		/**
+		 * Save user message.
+		 * Will create translate helper
+		 */
 		function add(){
 			if(!isset($this->params['url']['msg'])||!isset($this->params['url']['user_id'])||!isset($this->params['url']['lang'])){
 				echo json_encode(array("reulst"=>"failed"));
 				return;
 			}
-			$this->Message->create();
-			$this->Message->save(array('user_id'=>$this->params['url']['user_id'],
-									   'lang'=>$this->params['url']['lang'],
-									   'content'=>$this->params['url']['msg']));
-			echo json_encode(array("result"=>"success"));			
-		}
-	
-		function getTranslated(){
-		if($this->params['url']['src_lang']=='ch'){
-			$this->params['url']['src_lang']="zh-CN";	
-		}
-		if($this->params['url']['tgt_lang']=='ch'){
-			$this->params['url']['tgt_lang']="zh-CN";	
-		}
-		$translateUrl="https://www.googleapis.com/language/translate/v2?".
-				 "key=AIzaSyAkUJSMd7DS7UslAty_NahlR8x_CViYn0w&q=".urlencode($this->params['url']['msg']).
-				 "&source=".$this->params['url']['src_lang'].
-				 "&target=".$this->params['url']['tgt_lang'];
-		$ch = curl_init();
-		// Now set some options (most are optional)
-		// Set URL to download
-		curl_setopt($ch, CURLOPT_URL, $translateUrl);
 
-		curl_setopt($ch, CURLOPT_REFERER, "http://mchi.kaneko-lab.net");
-		// User agent
-		curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
-		// Include header in result? (0 = yes, 1 = no)
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		// Should cURL return or print out the data? (true = return, false = print)
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// Timeout in seconds
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		// Download the given URL, and return output
-		$output = curl_exec($ch);
-		// Close the cURL resource, and free system resources
-		curl_close($ch);
-		echo $output;
+			$message = $this->params['url']['msg'];
+			$userId = $this->params['url']['user_id'];
+			$lang	= $this->params['url']['lang'];
+			$result = $this->Message->saveMessage($message,$userId,$lang);
+
+			echo json_encode(array("result"=>($result)?"success":"failed"));
+		}
+
+		function getTranslated(){
+			$messageId = $this->params['url']['msg_id'];
+
+
+			if($this->params['url']['src_lang']=='ch'){
+				$this->params['url']['src_lang']="zh-CN";
+			}
+			if($this->params['url']['tgt_lang']=='ch'){
+				$this->params['url']['tgt_lang']="zh-CN";
+			}
+
+
+//			//Get Message.
+//			$result = $this->Message->getMessageWithTransAndKeyword($messageId);
+//
+//			pr($result);
+//			return;
+
+
+
+			$translateUrl="https://www.googleapis.com/language/translate/v2?".
+					 "key=AIzaSyARvc-ax5gVkGFlesv7xjC4cm7ldXZJBqY&q=".urlencode($this->params['url']['msg']).
+					 "&source=".$this->params['url']['src_lang'].
+					 "&target=".$this->params['url']['tgt_lang'];
+			$ch = curl_init();
+			// Now set some options (most are optional)
+			// Set URL to download
+			curl_setopt($ch, CURLOPT_URL, $translateUrl);
+
+			//curl_setopt($ch, CURLOPT_REFERER, "http://mchi.kaneko-lab.net");
+			// User agent
+			curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
+			// Include header in result? (0 = yes, 1 = no)
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			// Should cURL return or print out the data? (true = return, false = print)
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			// Timeout in seconds
+			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			// Download the given URL, and return output
+			$output = curl_exec($ch);
+			// Close the cURL resource, and free system resources
+			curl_close($ch);
+			echo $output;
+
 		return;
 		}
-		
+
 		function getParsed($lang='ja'){
 			if($lang=='ja'){
 			$msg=$this->params['url']['msg'];
@@ -107,6 +127,7 @@
 				return ;
 			}
 		}
+
 		function obj2hash($object){
 			$privious="";
 			if(is_object($object)){
@@ -130,6 +151,7 @@
 			}
 			return $res;
 		}
+
 
 }
 ?>

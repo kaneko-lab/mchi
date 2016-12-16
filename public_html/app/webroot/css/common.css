@@ -146,6 +146,16 @@ overflow-y:scroll;
 	display:block;
 	padding:5px;
 }
+
+.originalMsgBox{
+	float:left;
+	min-height:60px;
+	max-width:70%;
+	display:block;
+	padding:5px;
+	font-size:8pt;
+}
+
 .userMsgBox{
 	float:right;
 	background-color:white;
@@ -166,6 +176,29 @@ overflow-y:scroll;
     clear: both; 
     visibility:hidden;
 
+}
+
+.originalMsgSubInfoArea{
+	display:inline-block;
+	font-size:10pt;
+	width:100%;
+}
+.originalMsgSubInfoArea:after{
+	content: ".";
+	display: block;
+	height: 0;
+	font-size:0;
+	clear: both;
+	visibility:hidden;
+
+}
+.originalMsgBoxNickname{
+	color:#F90;
+	font-weight:bold;
+	font-size:16px;
+	line-height:1.4;
+	float:left;
+	padding-right:10px;
 }
 .msg{
 	word-break:break-all;
