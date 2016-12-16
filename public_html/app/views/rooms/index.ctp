@@ -59,14 +59,8 @@ $script= "
 			</div>
 		</div><!-- /footer -->
 		<!--Right Panel-->
-		<div data-role="panel" id="rightpanel3" data-position="right" data-display="overlay" data-theme="b">
-			<div data-role="header">
-				<h1>Images</h1>
-			</div><!-- /header -->
-			<br>
-			<p>This panel is positioned on the right with the overlay display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p>
-			<p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p>
-			<a  data-rel="close" data-role="button" data-theme="c" data-icon="delete" data-inline="false">Close</a>
+		<div data-role="panel" id="imageDetails" data-position="right" data-display="overlay" data-theme="b">
+
 		</div>
 	</div><!-- /page -->
 

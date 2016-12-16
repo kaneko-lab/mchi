@@ -52,7 +52,7 @@ class Message extends AppModel {
 		$retry = 0;
 		//Set Message Lock
 		while($this->isTranslatedMessageLock($msgId)){
-			usleep(100000);//wait 0.1;
+			usleep(500000);//wait 0.5;
 			$retry++;
 			if($retry == 20){
 				$returnData['data']['translated_message']="Failed to get lock for message id ".$msgId;
@@ -69,10 +69,15 @@ class Message extends AppModel {
 		$this->unbindModel(array('belongsTo'=>array('Category1','Category2','Category3')));
 		$this->id = $msgId;
 		$message = $this->read();
+		$translatedMessage = null;
+
+
+		if($targetLang == $message['Message']['lang']){
+			$translatedMessage = $message['Message']['contents'];
+		}
 
 		//check target lang is exist. if not get translate from google and save it.
-		$translatedMessage = null;
-		if(!empty($message['TranslatedMessage'])){
+		else if (!empty($message['TranslatedMessage'])){
 			foreach ($message['TranslatedMessage'] as $tm){
 				if($tm['lang'] == $targetLang){
 					$translatedMessage = $tm;
@@ -98,7 +103,7 @@ class Message extends AppModel {
 				if (isset($result['error'])) {
 					$translatedMessage = "Failed to get trans from google with error message : " . $result['error']['message'];
 				} else {
-					$translatedMessage = $result['data']['translations']['translatedText'];
+					$translatedMessage = $result['data']['translations'][0]['translatedText'];
 				}
 			}
 
@@ -107,10 +112,15 @@ class Message extends AppModel {
 		}
 
 		$returnData['data']['translated_message'] = $translatedMessage;
-		$returnData['data']['help_data'] = $message['TranslateHelper'];
+
+		if(!empty($message['TranslateHelper'])){
+			$jsonData = json_decode($message['TranslateHelper'][0]['img_json'],true);
+			$returnData['data']['help_data'] =isset($jsonData['items'])?$jsonData['items']:array();
+		}else{
+			$returnData['data']['help_data'] = array();
+		}
 
 		$this->unLockForTranslatedMessage($msgId);
-
 		return $returnData;
 	}
 
@@ -126,6 +136,7 @@ class Message extends AppModel {
 		$this->create();
 		$this->save(array('content'=>$message,'user_id'=>$userId,'lang'=>$lang));
 		$msgId = $this->getLastInsertID();
+		$this->doLockForTranslatedMessage($msgId);
 
 		//1.Get parsed data.
 		$auth = "Xidkexo121xlaAadkxidg";
@@ -137,6 +148,7 @@ class Message extends AppModel {
 		if($posTaggerResult === false){
 			//Logging and do not save helpers.
 			$this->log('Failed to get data from curl on message.php line :  '.__LINE__." with reason ".$this->_previousCURLError);
+			$this->unLockForTranslatedMessage($msgId);
 			return false;
 		}else{
 			//Get keywords for the message.
@@ -145,6 +157,7 @@ class Message extends AppModel {
 
 			if($posTaggerArray['RESULT']['CODE']!= 1000){
 				$this->log('Failed to get POS from morph.kaneko-lab.net with code ' .$posTaggerArray['RESULT']['CODE']. ' and DESC : '.$posTaggerArray['RESULT']['DESC'] );
+				$this->unLockForTranslatedMessage($msgId);
 				return false;
 			}
 
@@ -170,22 +183,11 @@ class Message extends AppModel {
 				$keyCount ++;
 			}
 
-
-
 			//Save images with whole sentence
 			if($keyCount < $maxKeyword)
 				$this->createTranslateHelper($msgId,Message::ETC,$message);
-
-
-
-
-//			foreach($verbs as $verb){
-//				if($keyCount >= $maxKeyword )
-//					break;
-//				$keyCount ++;
-//			}
-
 		}
+		$this->unLockForTranslatedMessage($msgId);
 		return true;
 	}
 

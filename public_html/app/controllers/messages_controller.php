@@ -48,9 +48,17 @@
 			echo json_encode(array("result"=>($result)?"success":"failed"));
 		}
 
+
+		function getTranslatedMessageAndHelpers($msgId,$tgtLang){
+			$result = $this->Message->getMessageWithTransAndKeyword($msgId,$tgtLang);
+			echo json_encode(array("result"=>$result));
+			return;
+		}
+
 		function getTranslated(){
 			$messageId = $this->params['url']['msg_id'];
-
+			$srcLang = $this->params['url']['src_lang'];
+			$targetLang = $this->params['url']['tgt_lang'];
 
 			if($this->params['url']['src_lang']=='ch'){
 				$this->params['url']['src_lang']="zh-CN";

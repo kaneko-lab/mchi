@@ -1,5 +1,6 @@
 var presentedMessages = {};
 var previousRequestMessageId = -1;
+var translateInfo = {};
 $(document).ready(function(e) {
 	$.ajaxSetup({ cache: false });
 	documentHeight=$(document).height();
@@ -169,6 +170,47 @@ function getTranslatedMsg(msg,msgId,srcLang){
 			$('#msg'+msgId).html(json.data.translations[0].translatedText);
 	});
 }
+
+
+function asyncUpdateTransatedMsgAndHelpers(msgId,srcLang) {
+	if (currentUserLang == srcLang) {
+		return;
+	}
+
+	if (translateInfo[msgId] != undefined) {
+		return;
+	}
+
+	url = '/Messages/getTranslatedMessageAndHelpers/' + msgId + '/' + currentUserLang;
+	$.getJSON(url, function (json) {
+		//Save Message Data.
+		translateInfo[msgId] = json.result.data;
+
+
+
+
+		//Check Exist Help Images.
+
+		if(translateInfo[msgId].help_data.length > 0){
+			//Insert First Image.
+			$('#msgImage'+msgId).html(
+				"<a href='#imageDetails' ><img width = '60' src='"+translateInfo[msgId].help_data[0].image.thumbnailLink+"'></a>"
+			);
+
+			$('#msgImage'+msgId).on("click",function(event){
+				$('#imageDetails').html(getImagesDetail(msgId));
+			});
+		}
+
+		if(translateInfo[msgId].translated_message.translated_message != undefined)
+			$('#msg' + msgId).html(translateInfo[msgId].translated_message.translated_message);
+		else
+			$('#msg' + msgId).html(translateInfo[msgId].translated_message);
+
+	});
+
+}
+
 function getParsedMsg(msg,msgId,srcLang){
 	url='/Messages/getParsed/'+srcLang+'?msg='+encodeURI(msg);
 	$.getJSON(url,function(json){
@@ -185,7 +227,7 @@ function getParsedMsg(msg,msgId,srcLang){
 
 function getCustomizedMessage(msg){
 	timeWait=0;
-	getTranslatedMsg(msg.Message.content,msg.Message.id,msg.Message.lang);
+	asyncUpdateTransatedMsgAndHelpers(msg.Message.id,msg.Message.lang);
 	//getParsedMsg(msg.Message.content,msg.Message.id,msg.Message.lang);
 	imageDivId="msgImage"+msg.Message.id;
 
@@ -193,13 +235,11 @@ function getCustomizedMessage(msg){
 		"<div class=\"othersIconArea\">"+
 		"<img src=\"/img/flags/"+msg.Message.lang+".png\" width=60></div>"+
 		"<div class=\"ui-corner-all othersMsgBox\">"+
-		"<div class=\"subInfoArea\">"+
-		"<div class=\"nickName\">"+msg.User.nickname+"</div>"+
-		"</div>"+
-		"<div id='msg"+msg.Message.id+"' class=\"msg\" >"+msg.Message.content+"</div>"+
-		"<div id='"+imageDivId+"' class=\"msgCategory\" ><img src='abc'><img src='abc'><img src='abc'></div>"+
-		"<a href='#rightpanel3' ><img src='abc'></a>"+
-		"</div>"+
+			"<div class=\"subInfoArea\">"+
+				"<div class=\"nickName\">"+msg.User.nickname+"</div>"+
+			"</div>"+
+			"<div id='msg"+msg.Message.id+"' class=\"msg\" >"+msg.Message.content+"</div>"+
+			"<div id='"+imageDivId+"' class=\"msg\" >"+"</div>"+
 		"</div>";
 }
 
@@ -210,8 +250,27 @@ function getOriginalMessage(msg){
 		"<div class=\"ui-corner-all originalMsgBox\">"+
 		"<div class=\"originalMsgSubInfoArea\">"+
 		"<div class=\"originalMsgBoxNickname\">"+msg.User.nickname+"</div>"+
-		"</div>"+
-		"<div id='orgMsg"+msg.Message.id+"' class=\"msg\" >"+msg.Message.content+"</div>"+
+		"</div>"+ "<div id='orgMsg"+msg.Message.id+"' class=\"msg\" >"+msg.Message.content+"</div>"+
 		"</div>"+
 		"</div>";
+}
+
+function getImagesDetail(msgId){
+
+
+
+	if(translateInfo[msgId] == undefined)
+		return " <div data-role='header'>"+  "<h3>Not found data</h3>"+  "</div><br>"+
+			"<p>No data.</p>"+
+			"<p></p>";
+
+	images = translateInfo[msgId].help_data;
+	imgHtmls ="";
+	for (i = 0 ; i < images.length ; i ++  ){
+		imageData = images[i];
+		img = imageData.image;
+		imgHtmls+="<img src = "+img.thumbnailLink+" width='60' >";
+	}
+
+	return " <div data-role='header'>"+  "<h3>Images</h3>"+  "</div><br>"+ imgHtmls;
 }
