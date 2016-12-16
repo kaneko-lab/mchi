@@ -59,7 +59,15 @@ $script= "
 			</div>
 		</div><!-- /footer -->
 		<!--Right Panel-->
-		<div data-role="panel" id="imageDetails" data-position="right" data-display="overlay" data-theme="b">
+		<div data-role="panel" id="imageDetails0" data-position="right" data-display="overlay" data-theme="b">
+
+		</div>
+
+		<div data-role="panel" id="imageDetails2" data-position="right" data-display="overlay" data-theme="b">
+
+		</div>
+
+		<div data-role="panel" id="imageDetails1" data-position="right" data-display="overlay" data-theme="b">
 
 		</div>
 	</div><!-- /page -->

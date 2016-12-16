@@ -193,15 +193,31 @@ function asyncUpdateTransatedMsgAndHelpers(msgId,srcLang) {
 
 		if(translateInfo[msgId].help_data.length > 0){
 			//Insert First Image.
-			$('#msgImage'+msgId).html(
-				"<a href='#imageDetails' ><img width = '60' src='"+translateInfo[msgId].help_data[0].image.thumbnailLink+"'></a>"
-			);
 
-			$('#msgImage'+msgId).on("click",function(event){
-				$('#imageDetails').html(getImagesDetail(msgId));
-			});
+			//Create Image Details.
+			helpImages = "";
+			for(i = 0 ; i < translateInfo[msgId].help_data.length ; i ++){
+				aId = "helpImage_"+msgId+"_"+i;
+				helpImages +=  "<a id = '"+aId+"' href='#imageDetails"+i+"'><img width = '60' src='"+translateInfo[msgId].help_data[i][0].image.thumbnailLink+"'></a>";
+
+			}
+
+			$('#msgImage'+msgId).html(helpImages);
+
+			for(i = 0 ; i < translateInfo[msgId].help_data.length ; i ++){
+				aId = "helpImage_"+msgId+"_"+i;
+
+				$('#'+aId).on("click",function(event){
+					//todo fixed bug for always 0
+					$imgDetail = getImagesDetail(msgId,translateInfo[msgId].help_data[0]);
+					$('#imageDetails'+0).html($imgDetail);
+				});
+			}
+
 		}
 
+
+		//Todo check following code. why two type?
 		if(translateInfo[msgId].translated_message.translated_message != undefined)
 			$('#msg' + msgId).html(translateInfo[msgId].translated_message.translated_message);
 		else
@@ -255,18 +271,10 @@ function getOriginalMessage(msg){
 		"</div>";
 }
 
-function getImagesDetail(msgId){
+function getImagesDetail(msgId,images){
 
-
-
-	if(translateInfo[msgId] == undefined)
-		return " <div data-role='header'>"+  "<h3>Not found data</h3>"+  "</div><br>"+
-			"<p>No data.</p>"+
-			"<p></p>";
-
-	images = translateInfo[msgId].help_data;
 	imgHtmls ="";
-	for (i = 0 ; i < images.length ; i ++  ){
+	for (i = 0 ; i < images.length ; i ++ ){
 		imageData = images[i];
 		img = imageData.image;
 		imgHtmls+="<img src = "+img.thumbnailLink+" width='60' >";

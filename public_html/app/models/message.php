@@ -114,8 +114,12 @@ class Message extends AppModel {
 		$returnData['data']['translated_message'] = $translatedMessage;
 
 		if(!empty($message['TranslateHelper'])){
-			$jsonData = json_decode($message['TranslateHelper'][0]['img_json'],true);
-			$returnData['data']['help_data'] =isset($jsonData['items'])?$jsonData['items']:array();
+			$returnData['data']['help_data'] = array();
+			foreach($message['TranslateHelper'] as $helper){
+				$jsonData = json_decode($helper['img_json'],true);
+				if(isset($jsonData['items']))
+					$returnData['data']['help_data'][]	 = $jsonData['items'];
+			}
 		}else{
 			$returnData['data']['help_data'] = array();
 		}
