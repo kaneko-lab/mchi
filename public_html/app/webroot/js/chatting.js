@@ -1,4 +1,5 @@
 var previousRequestMessageId = -1;
+var presentedMessages = {};
 $(document).ready(function(e) {
 	$.ajaxSetup({ cache: false });
 	documentHeight=$(document).height();
@@ -36,24 +37,30 @@ function doSubmit(){
 function start(){
 	getLatestMsg();
 }
+
+
 function getLatestMsg(){
+	latestMsgUrl="/Messages/get/" +currentLatestMsgId;
 
-	latestMsgUrl="/Messages/get/"
-	+currentLatestMsgId;
-
-
-	if(previousRequestMessageId != currentLatestMsgId) {
-		previousRequestMessageId = currentLatestMsgId;
-		$.getJSON(latestMsgUrl, function (json) {
-			updateChatAreaMsg(json);
-		});
-	}
+	//previousRequestMessageId = currentLatestMsgId;
+	$.getJSON(latestMsgUrl, function (json) {
+		updateChatAreaMsg(json);
+	});
+	//if(previousRequestMessageId != currentLatestMsgId) {
+    //
+	//}
 	timerID = setTimeout("getLatestMsg()",1000);
 }
 
 function updateChatAreaMsg(msgs){
 	if(msgs.length < 1)return;
 	for( i in msgs){
+
+		//Todo Check why system update twice.
+		if(msgs[i].Message.id in presentedMessages)
+			continue;
+		presentedMessages[msgs[i].Message.id] = msgs[i].Message.id;
+
 		customizedMsg = getCustomizedMessage(msgs[i]);
 		originalMsg = getOriginalMessage(msgs[i]);
 		//if(msgs[i].Message.user_id==currentUserId){
@@ -67,7 +74,7 @@ function updateChatAreaMsg(msgs){
 		chatAreaScroll();
 	}
 	currentLatestMsgId=msgs[i].Message.id;
-	previousRequestMessageId = -1;
+	//previousRequestMessageId = -1;
 }
 
 function chatAreaScroll(){
@@ -86,10 +93,10 @@ function addUserMsg(msg){
 	
 	$.getJSON(url,function(respond){
 			if(respond.result=="success"){
-				previousRequestMessageId = -1;
-				getLatestMsg();
+				//previousRequestMessageId = -1;
+				//getLatestMsg();
 			}else{
-			alert("msg failed");
+				alert("msg failed");
 			}
 	});
 
