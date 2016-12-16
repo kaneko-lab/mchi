@@ -1,3 +1,5 @@
 public_html/app/tmp/*
 .idea/*
 public_html/app/config/core.backup.php
+
+public_html/app/config/core.php
