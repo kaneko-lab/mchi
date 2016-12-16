@@ -1,5 +1,5 @@
-var previousRequestMessageId = -1;
 var presentedMessages = {};
+var previousRequestMessageId = -1;
 $(document).ready(function(e) {
 	$.ajaxSetup({ cache: false });
 	documentHeight=$(document).height();
@@ -35,6 +35,8 @@ function doSubmit(){
 
 
 function start(){
+
+	presentedMessages = {};
 	getLatestMsg();
 }
 
