@@ -5,3 +5,5 @@ public_html/app/config/core.backup.php
 public_html/app/config/core.php
 
 public_html/app/config/database.php.backup.php
+
+public_html/app/config/database.php
