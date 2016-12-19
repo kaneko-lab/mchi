@@ -31,10 +31,7 @@ $script= "
 
 
 
-	<!-- Start of 2nd page -->
-	<div data-role="page" id="chat" data-hash="false">
 
-	</div><!-- /page -->
 
 </div><!-- panel menu -->
 
@@ -44,6 +41,8 @@ $script= "
 		<div data-role="header">
 			<h1>Multilingual Chat System with Help by Images</h1>
 			<a data-ajax="false" href="/Users/logout" type="button" class="ui-btn-right" >ログアウト</a>
+
+
 		</div><!-- /header -->
 
 		<div data-role="content" data-theme="c">
@@ -70,6 +69,7 @@ $script= "
 		<div data-role="panel" id="imageDetails1" data-position="right" data-display="overlay" data-theme="b">
 
 		</div>
+
 	</div><!-- /page -->
 
 </div><!-- /page -->

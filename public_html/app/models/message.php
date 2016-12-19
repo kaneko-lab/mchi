@@ -38,7 +38,7 @@ class Message extends AppModel {
 	const CONJUNCTION = "CONJUNCTION"; //接続詞
 	const INTERJECTION = "INTERJECTION"; //感動詞
 	const ETC = "ETC"; //その他
-	const MAX_KEYWORD_NUM = 2;
+	const MAX_KEYWORD_NUM = 3;
 
 	private  $_previousCURLError = null;
 
@@ -73,7 +73,7 @@ class Message extends AppModel {
 
 
 		if($targetLang == $message['Message']['lang']){
-			$translatedMessage = $message['Message']['contents'];
+			$translatedMessage = $message['Message']['content'];
 		}
 
 		//check target lang is exist. if not get translate from google and save it.

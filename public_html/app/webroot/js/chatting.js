@@ -1,32 +1,48 @@
 var presentedMessages = {};
-var previousRequestMessageId = -1;
 var translateInfo = {};
 $(document).ready(function(e) {
-	$.ajaxSetup({ cache: false });
-	documentHeight=$(document).height();
-	chatAreaHeight=documentHeight-160+"px";
-	$("html").keydown(function(key){
-		if(key.keyCode===13){
-		doSubmit();
-		return false;
+	$("#msgInputArea").on('keydown',function(ev){
+		ev.stopPropagation();
+		if(ev.keyCode===13){
+			doSubmit();
+			return ;
 		}
 	});
+
+
 	$("#chatButton").click(function(ev){
 		doSubmit();
 		return false;
 	});
+	$.ajaxSetup({ cache: false });
+	documentHeight=$(document).height();
+	chatAreaHeight=documentHeight-160+"px";
+
+
 
 	$("#msgInput").submit(function(){
 		return false;
-		});
+	});
 
 	$("#chatArea").css('height',chatAreaHeight);
+	$( ".photopopup" ).on({
+		popupbeforeposition: function() {
+			var maxHeight = $( window ).height() - 60 + "px";
+			$( ".photopopup img" ).css( "max-height", maxHeight );
+		}
+	});
 	start();
 });
+
+
+
+/**
+ *
+ */
 function doSubmit(){
 		inputText = $("#msgInputArea").val();
 		if(inputText.length<1){
-		alert("Input messgage");
+			alert("Input messgage");
 		}else{
 		//Message input
 		addUserMsg(inputText);			
@@ -35,6 +51,9 @@ function doSubmit(){
 }
 
 
+/**
+ *
+ */
 function start(){
 
 	presentedMessages = {};
@@ -42,20 +61,24 @@ function start(){
 }
 
 
+/**
+ *
+ */
 function getLatestMsg(){
 	latestMsgUrl="/Messages/get/" +currentLatestMsgId;
 
 	//previousRequestMessageId = currentLatestMsgId;
 	$.getJSON(latestMsgUrl, function (json) {
-		updateChatAreaMsg(json);
+		updateChatArea(json);
 	});
-	//if(previousRequestMessageId != currentLatestMsgId) {
-    //
-	//}
 	timerID = setTimeout("getLatestMsg()",1000);
 }
 
-function updateChatAreaMsg(msgs){
+/**
+ *
+ * @param msgs
+ */
+function updateChatArea(msgs){
 	if(msgs.length < 1)return;
 	for( i in msgs){
 
@@ -63,37 +86,29 @@ function updateChatAreaMsg(msgs){
 		if(msgs[i].Message.id in presentedMessages)
 			continue;
 		presentedMessages[msgs[i].Message.id] = msgs[i].Message.id;
-
 		customizedMsg = getCustomizedMessage(msgs[i]);
 		originalMsg = getOriginalMessage(msgs[i]);
-		//if(msgs[i].Message.user_id==currentUserId){
-		//	customizedMsg=getCustomizedOthersMsg(msgs[i] );
-		//}else{
-		//	customizedMsg=getCustomizedOthersMsg(msgs[i]);
-		////翻訳追加
-		//}
 		$('#chatArea').append(customizedMsg);
 		$('#originalChatArea').append(originalMsg);
-		chatAreaScroll();
+		chatAreaScrollToBottom();
 	}
 	currentLatestMsgId=msgs[i].Message.id;
-	//previousRequestMessageId = -1;
 }
 
-function chatAreaScroll(){
+/**
+ *
+ */
+function chatAreaScrollToBottom(){
 	var pageBottom=99999999999;
 	$('#chatArea').scrollTop(pageBottom);
 }
 
+/**
+ *
+ * @param msg
+ */
 function addUserMsg(msg){
-	//メッセージ登録
-	//var jsData = $.ajax({
-	//url :"/Messages/add?msg="+encodeURI(msg)+"&user_id="+currentUserId+"&lang="+currentUserLang
-	//}).responseText;
-	
-	url = "/Messages/add?msg="+encodeURI(msg)+"&user_id="+currentUserId+"&lang="+currentUserLang;
-	//respond=(eval("(" + jsData + ")"));
-	
+	url = "/Messages/add?msg="+encodeURIComponent(msg)+"&user_id="+currentUserId+"&lang="+currentUserLang;
 	$.getJSON(url,function(respond){
 			if(respond.result=="success"){
 				//previousRequestMessageId = -1;
@@ -102,81 +117,16 @@ function addUserMsg(msg){
 				alert("msg failed");
 			}
 	});
+}
 
-	
-	//結果取得
-	
-};
+
+
 /**
- * Previous version
- * @param msg
- * @returns {string}
+ *
+ * @param msgId
+ * @param srcLang
  */
-function getCustomizedOthersMsg(msg){
-	timeWait=0;
-	getTranslatedMsg(msg.Message.content,msg.Message.id,msg.Message.lang);
-	//getParsedMsg(msg.Message.content,msg.Message.id,msg.Message.lang);
-	imageDivId="msgCategory"+msg.Message.id;
-	asyncUpdateCategory(msg.Message.id,imageDivId,timeWait);
-
-	return		"<div id='msgArea"+msg.Message.id+"' class=\"othersMsgArea\">"+
-			    "<div class=\"othersIconArea\">"+
-				"<img src=\"/img/thumb_60_60.jpg\"></div>"+
-				"<div class=\"ui-corner-all othersMsgBox\">"+
-				"<div class=\"subInfoArea\">"+
-				"<div class=\"nickName\">"+msg.User.nickname+"</div>"+
-				"<div id='"+imageDivId+"' class=\"msgCategory\" >Loading...</div>"+
-				"</div>"+
-				"<div id='msg"+msg.Message.id+"' class=\"msg\" >"+msg.Message.content+"</div>"+
-				"</div>"+
-				"</div>";
-
-}
-
-function asyncUpdateCategory(id,divId,timeWait){
-	getCategoryUrl="/Categorizations/jsonGetCategory/"+id+"/"+currentUserLang+"/"+timeWait;
-	$.getJSON(getCategoryUrl, function(json){
-		$("#"+divId).text("["+json.category1+"] ["+json.category2+"]["+json.category3+"]");
-	 });
-
-}
-
-function getCustomizedUserMsg(msg){
-	timeWait=1;//1sec
-	
-	//自分の発言の下に分析結果を表示
-	//getParsedMsg(msg.Message.content,msg.Message.id,msg.Message.lang);
-	imageDivId="msgCategory"+msg.Message.id;
-	asyncUpdateCategory(msg.Message.id,imageDivId,timeWait);
-	
-	return		"<HR size ='10'><div id='msgArea"+msg.Message.id+"' class=\"userMsgArea\">"+
-			    "<div class=\"userIconArea\">"+
-				"<img src=\"/img/thumb_60_60.jpg\"></div>"+
-				"<div class=\"ui-corner-all userMsgBox\">"+
-				"<div class=\"subInfoArea\">"+
-				"<div class=\"nickName\">"+msg.User.nickname+"</div>"+
-				"<div id='"+imageDivId+"' class=\"msgCategory\" >Loading..</div>"+
-				"</div>"+
-				"<div id='msg"+msg.Message.id+"' class=\"msg\" >"+msg.Message.content+"</div>"+
-				"</div>"+
-				"</div>";
-}
-function getTranslatedMsg(msg,msgId,srcLang){
-	if(currentUserLang==srcLang){
-		return;
-	}
-	url='/Messages/getTranslated?msg='+encodeURI(msg)+'&src_lang='+srcLang+'&tgt_lang='+currentUserLang+'&msg_id='+msgId;
-	$.getJSON(url,function(json){
-			$('#msg'+msgId).html(json.data.translations[0].translatedText);
-	});
-}
-
-
-function asyncUpdateTransatedMsgAndHelpers(msgId,srcLang) {
-	if (currentUserLang == srcLang) {
-		return;
-	}
-
+function asyncUpdateTranslatedMsgAndHelpers(msgId) {
 	if (translateInfo[msgId] != undefined) {
 		return;
 	}
@@ -186,31 +136,25 @@ function asyncUpdateTransatedMsgAndHelpers(msgId,srcLang) {
 		//Save Message Data.
 		translateInfo[msgId] = json.result.data;
 
-
-
-
-		//Check Exist Help Images.
-
 		if(translateInfo[msgId].help_data.length > 0){
 			//Insert First Image.
 
-			//Create Image Details.
 			helpImages = "";
-			for(i = 0 ; i < translateInfo[msgId].help_data.length ; i ++){
-				aId = "helpImage_"+msgId+"_"+i;
-				helpImages +=  "<a id = '"+aId+"' href='#imageDetails"+i+"'><img width = '60' src='"+translateInfo[msgId].help_data[i][0].image.thumbnailLink+"'></a>";
+			for(i = 0 ; i < translateInfo[msgId].help_data.length ; i ++) {
+				aId = "helpImage_" + msgId + "_" + i;
+				helpImages += "<a id = '" + aId + "' href='#imageDetails" + i + "'><img width = '60' src='" + translateInfo[msgId].help_data[i][0].image.thumbnailLink + "'></a>";
 
 			}
-
 			$('#msgImage'+msgId).html(helpImages);
 
+			//Create Image Details.
 			for(i = 0 ; i < translateInfo[msgId].help_data.length ; i ++){
 				aId = "helpImage_"+msgId+"_"+i;
 
-				$('#'+aId).on("click",function(event){
+				$('#'+aId).on("click",{value:i},function(event){
 					//todo fixed bug for always 0
-					$imgDetail = getImagesDetail(msgId,translateInfo[msgId].help_data[0]);
-					$('#imageDetails'+0).html($imgDetail);
+					$imgDetail = getImagesDetail(msgId,translateInfo[msgId].help_data[event.data.value]);
+					$('#imageDetails'+event.data.value).html($imgDetail);
 				});
 			}
 
@@ -227,24 +171,15 @@ function asyncUpdateTransatedMsgAndHelpers(msgId,srcLang) {
 
 }
 
-function getParsedMsg(msg,msgId,srcLang){
-	url='/Messages/getParsed/'+srcLang+'?msg='+encodeURI(msg);
-	$.getJSON(url,function(json){
-	custom="<div class='parseArea'>";
-		for( i in json){
-			custom+="["+json[i]+"] ";
-		}
-	custom+="</div>";
-	if(json.length>0)$('#msg'+msgId).append(custom);
-
-		});
-	}
-
-
+/**
+ *
+ * @param msg
+ * @returns {string}
+ */
 function getCustomizedMessage(msg){
 	timeWait=0;
-	asyncUpdateTransatedMsgAndHelpers(msg.Message.id,msg.Message.lang);
-	//getParsedMsg(msg.Message.content,msg.Message.id,msg.Message.lang);
+	asyncUpdateTranslatedMsgAndHelpers(msg.Message.id);
+
 	imageDivId="msgImage"+msg.Message.id;
 
 	return "<HR size = 1 color='white'> <div id='msgArea"+msg.Message.id+"' class=\"othersMsgArea\">"+
@@ -259,6 +194,11 @@ function getCustomizedMessage(msg){
 		"</div>";
 }
 
+/**
+ *
+ * @param msg
+ * @returns {string}
+ */
 function getOriginalMessage(msg){
 	return "<HR size = 1 color='white'><div id='msgArea"+msg.Message.id+"' class=\"othersMsgArea\">"+
 		"<div class=\"othersIconArea\">"+
@@ -271,14 +211,28 @@ function getOriginalMessage(msg){
 		"</div>";
 }
 
+/**
+ *
+ * @param msgId
+ * @param images
+ * @returns {string}
+ */
 function getImagesDetail(msgId,images){
 
-	imgHtmls ="";
+	bigSizeImgAreaId = 'bigSigImageArea'+msgId;
+	imgHtmls ="<div><div style='width:300px;height=300px;overflow: hidden;'><h2 style='text-align: center'>Enlarged image</h2><br><img style='width:250px!important;height:250px!important;' id='"+bigSizeImgAreaId+"' src="+images[0].image.thumbnailLink+"  ><br><p style='text-align: center'>Other Candidates</p></div>";
 	for (i = 0 ; i < images.length ; i ++ ){
 		imageData = images[i];
 		img = imageData.image;
-		imgHtmls+="<img src = "+img.thumbnailLink+" width='60' >";
-	}
+		imgHtmls+="<div style='float:left;padding: 1px;margin:1px;background-color: #ffffff;text-align:center'>"
+		+"<img src = "+img.thumbnailLink+" style='height:50px!important;' onmouseover=\"updateBigSizeImasge('"+bigSizeImgAreaId+"','"+img.thumbnailLink+"');\"  ></div>";
 
-	return " <div data-role='header'>"+  "<h3>Images</h3>"+  "</div><br>"+ imgHtmls;
+	}
+	imgHtmls +="</div>"
+
+	return "<br>"+ imgHtmls;
+}
+
+function updateBigSizeImasge(bigSizeAreaId,src){
+	document.getElementById(bigSizeAreaId).src = src;
 }
